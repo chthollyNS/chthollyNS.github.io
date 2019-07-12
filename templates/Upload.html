@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<br>
+<br>
+    {{ err}}
+<br>
+<br>
+<body background="/static/img/timg.jpg" style=" background-repeat:no-repeat ;background-size:100% 100%; background-attachment: fixed;" >
+    <div align="center">
+        <form action="/app/upload/{{ username }}/" enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            <label for="title">商品名称</label>
+            <input type = 'text' name="title" required><br>
+            商品单价:<input type="text" name="price"/><br>
+            商品数量:<input type="text" name="number"/><br>
+            商品类型：<br>
+            水果<input type="radio" name="button" value="1"/>饮料<input type="radio" name="button" value="2"/>
+            速食<input type="radio" name="button" value="3"/> <br>蔬菜<input type="radio" name="button" value="4"/>
+            肉类<input type="radio" name="button" value="5"/> 百货<input type="radio" name="button" value="6"/><br>
+            商品简介:<br><textarea type = 'text' name="text" required style="width:155px;height:100px;"></textarea><br>
+            <h3>请上传图片</h3>
+             <input type="file" name="file" /><br/>
+            <input type = "submit" value="提交">
+        </form>
+    <div align="center"><a href="/app/index/{{ username }}"><button style="width:43px;text-align:center;">退出</button></a>
+    </div></div>
+</body>
+</html>

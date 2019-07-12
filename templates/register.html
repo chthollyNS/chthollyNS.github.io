@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>register</title>
+</head>
+<br>
+<br>
+<body background="/static/img/timg.jpg" style=" background-repeat:no-repeat ;background-size:100% 100%; background-attachment: fixed;" >
+    <div align="center">
+        <h1>Page for register</h1>
+        <p>{{ key }}</p>
+        <p>{{ key1 }}</p>
+    </div>
+    <div align="center">
+        <form action="/app/register/" enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            用户:<input type = 'text' name="username" required><br>
+            密码:<input type = "password" name="password" required><br>
+            确认:<input type = "password" name="passwords" required><br>
+            简介:<textarea type = 'text' name="text" required style="width:155px;height:100px;"></textarea><br>
+             <input type="radio" name="ral" checked="checked" />男<input type="radio" name="ral" />女
+            <h3>请上传头像</h3>
+            <input type="file" name="myfile" /><br/>
+            <input type = "submit" value="注册">
+        </form>
+    <a href="{% url 'login'%}"><button style="width:43px;text-align:center;">退出</button></a>
+    </div>
+</body>
+</html>

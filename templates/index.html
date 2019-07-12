@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+     <style type="text/css">
+            .box{
+                width: 80px;
+                height: 30px;
+                text-align:center;
+                position: absolute;
+                right: 3%;
+                top: 1%;
+            }
+            .box2 {
+                width: 600px;
+                height: 350px;
+                text-align:center;
+                position: absolute;
+                left: 31%;
+                top: 15%;
+            }
+			a:visited {
+				color: black;
+			}
+            .box3{
+                width: 200px;
+                height: 600px;
+                text-align:center;
+                position: absolute;
+                left: 17%;
+                top: 6%;
+             {#border: solid #f8f7ff 4px;  #}
+                font-size: 24px;
+            }
+             .box4{
+                width: 250px;
+                height: 310px;
+                text-align:center;
+                position: absolute;
+                right: 16%;
+                top: 12%;
+                {#border: solid #f8f7ff 4px;#}
+                font-size: 24px;
+            }
+            .box5{
+                width: 1024px;
+                height: 200px;
+                text-align:center;
+                position: absolute;
+                left: 19%;
+                top: 68%;
+               {#border: solid #f8f7ff 4px;#}
+                font-size: 24px;
+            }
+			a:hover {
+				color: blue;}
+			a:active {
+				color: red}
+
+		</style>
+</head>
+<br>
+<div align="center">{{ err }}</div>
+<div>
+    <table align="center">
+			<tr align="center">
+				<td> <form action="/app/cancel/{{ username }}/" method="GET">
+                {% csrf_token %}
+            <input type="submit" value="退出用户">
+        </form></td>
+				<td> <form action="/app/upload/{{ username }}/" method="GET">
+                {% csrf_token %}
+            <input type="submit" value="上传商品">
+        </form></td>
+                <td>  <form action="/app/admin/{{ username }}/" method="GET">
+                {% csrf_token %}
+            <input type="submit" value="管理界面">
+        </form></td>
+             <td>  <form action="/app/personal/{{ username }}/" method="GET">
+                {% csrf_token %}
+            <input type="submit" value="个人中心">
+        </form></td>
+                <td> <form action="/app/user_logout/{{ username }}/" method="GET">
+                {% csrf_token %}
+            <input type="submit" value="注销用户">
+        </form></td>
+                 {% for i in data3 %}
+                <td> <form action="/app/balance/{{ i.balance }}/{{ username }}/" method="GET">
+                {% csrf_token %}
+            <input type="submit" value="用户充值">
+        </form></td>{% endfor %}
+			</tr>
+</table>
+    <div align="center">
+        <form action="/app/title_search/{{ username }}/" method="GET">
+                {% csrf_token %}
+             <input type="text" name="search">
+            <input type="submit" value="搜索">
+        </form></div>
+<div class="box3" >
+    <table align="center" >
+        <br><br>
+			<tr >
+                <a href="/app/search/1/{{ username }}/">水果</a><br><br><a href="/app/search/2/{{ username }}/">饮料</a></tr><br><br>
+            <tr>
+                <a href="/app/search/3/{{ username }}/">速食</a><br><br><a href="/app/search/4/{{ username }}/">蔬菜</a><br></tr><br>
+            <tr>
+                <a href="/app/search/5/{{ username }}/">肉类</a><br><br><a href="/app/search/6/{{ username }}/">百货</a><br></tr><br>
+    </table></div></div>
+<div class="box4">
+    <tr>
+        <div align="center"><td>排行:</td><br></div>
+         {% for i in data5 %}
+        <td><a href="/app/title_search1/{{ username }}/{{ i.name }}/"><img src="/static/img/{{ i.path }}" height="50" , width="75" alt="加载失败" title="文章图片"/></a></td><br>
+        <td><a href="/app/title_search1/{{ username }}/{{ i.name }}/">{{ i.name }}</a></td><br><div align="center"><td>购买数:{{ i.Count }}</td><br></div>
+        {% endfor %}
+    </tr>
+</div>
+<div class="box2">
+    <marquee  behavior="alternate" onmouseover=stop() onmouseout=start() scrollAmount=5  loop=infinite  deplay="0"><a href="/app/title_search1/{{ username }}/{{ date1 }}/"><IMG  src="/static/img/{{ img1 }}" width="600" height="350" ></a><a href="/app/title_search1/{{ username }}/{{ date2 }}/"><IMG  src="/static/img/{{ img2 }}" width="600" height="350"></a><a href="/app/title_search1/{{ username }}/{{ date }}/"><IMG  src="/static/img/{{ img }}" width="600" height="350"></a>
+</marquee></div>
+ {% for i in data3 %}
+<div class="box"><IMG  src="/static/img/{{ data2 }}" width="80" height="50" ><br>欢迎:{{ i.username }}<br><a href="/app/balance/{{ i.balance }}/{{ username }}/">余额</a>:<br>{{ i.balance }}<br><a href="/app/trolley/{{ username }}/">购物车</a>
+    {% endfor %}</div>
+<body>
+
+<div class="box5">新品上市:<br><br>
+    <tr align="center">
+         {% for i in data6 %}
+         <td><a href="/app/title_search1/{{ username }}/{{ i.name }}/"><img src="/static/img/{{ i.path }}" height="70" , width="125" alt="加载失败" title="文章图片"/></a></td>
+        <td><a href="/app/title_search1/{{ username }}/{{ i.name }}/">{{ i.name }}</a></td>
+        {% endfor %}
+    </tr>
+</div>
+
+</div>
+</body>
+</html>

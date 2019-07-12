@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+      <style type="text/css">
+            .box{
+                width: 80px;
+                height: 30px;
+                text-align:center;
+                position: absolute;
+                right: 3%;
+                top: 1%;
+            }
+			a:hover {
+				color: blue;}
+			a:active {
+				color: red}
+
+		</style>
+</head>
+<body>
+<table table align="center" width="1000" height="75">
+        <thead>
+        <tr>
+            <th>商品图像</th>
+            <th>商品名称</th>
+            <th>商品单价</th>
+            <th>商品数量</th>
+            <th>商品简介</th>
+            <th>相关操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in data %}
+            <tr>
+            <td align="center">
+                {% load static %}
+                <a href="/app/title/{{ i.id }}/{{ username }}/">
+                    <img src="/static/img/{{ i.path }}" height="100" , width="200" alt="加载失败" title="货物图片"/></a><br></td>
+                <td align="center">{{ i.name }}</td>
+                <td align="center">{{ i.price }}</td>
+                <td align="center">{{ i.number }}</td>
+                <td align="center">{{ i.synopsis|slice:'50'}}</td>
+                <td><a href="/app/del/{{ i.id }}/{{ username }}/">删除</a>
+                <a href="/app/alter/{{ i.id }}/{{ username }}/">修改</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+</table>
+
+<body>
+<div align="center">
+    {% if data.has_previous%}
+            <a href="?page={{ data.previous_page_number }}"aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+    {% endif %}
+    {% for pg in data.paginator.page_range%}
+        {% if data.number == pg %}
+            <a href="?page{{ pg }}">{{ pg }}</a>
+        {% else %}
+            <a href="?page={{ pg }}">{{ pg }}</a>
+        {% endif %}
+    {% endfor %}
+    {% if data.has_next %}
+            <a href="?page={{ data.next_page_number }}" aria-label="Next"><span aria-hidden="true">&raquo;</span>
+            </a>
+    {% endif %}
+<div align="center"><a href="/app/index/{{ username }}">返回</a></div>
+</div>
+</body>
+</html>

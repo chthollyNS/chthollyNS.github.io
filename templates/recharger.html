@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body background="/static/img/time3.jpg" style=" background-repeat:no-repeat ;background-size:100% 100%; background-attachment: fixed;" >
+<br><br><br><div align="center"> {{ err }}</div>
+{% for i in data %}
+<div align="center">
+    余额:{{ i.balance }}
+      <form action="/app/balance/{{ i.balance }}/{{ username }}/" method="post">
+                {% csrf_token %}
+          <input type="number" value="0" name="money"><br>
+          <input type="submit" value="充值">
+        </form>
+    </div>
+
+
+<div align="center">
+ <div align="center"><a href="/app/index/{{ username }}"><button style="width:43px;text-align:center;">退出</button></a>
+</div>
+{% endfor %}
+
+</body>
+</html>

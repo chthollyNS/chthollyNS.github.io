@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title1</title>
+      <style type="text/css">
+            .box{
+                width: 80px;
+                height: 30px;
+                text-align:center;
+                position: absolute;
+                right: 3%;
+                top: 1%;
+            }
+			a:hover {
+				color: blue;}
+			a:active {
+				color: red}
+
+		</style>
+</head>
+<body >
+
+<div align="center">
+<br><br>
+<div align="center">
+    <table table align="center" width="1000" height="75">
+        <thead>
+        <tr>
+            <th>商品图像</th>
+            <th>商品名称</th>
+            <th>商品单价</th>
+            <th>商品数量</th>
+            <th>商品简介</th>
+            <th>上架时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in data1 %}
+            <tr>
+            <td align="center">
+                {% load static %}
+                <a href="/app/title/{{ i.id }}/{{ username }}/">
+                    <img src="/static/img/{{ i.path }}" height="125" , width="200" alt="加载失败" title="货物图片"/></a><br></td>
+                <td align="center">{{ i.name }}</td>
+                <td align="center">{{ i.price }}</td>
+                <td align="center">{{ i.number }}</td>
+                <td align="center">{{ i.synopsis|slice:'50'}}</td>
+                <td align="center">{{ i.time}}</td>
+                <td><a href="/app/title/{{ i.id }}/{{ username }}/">购买</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% for i in data3 %}
+<div class="box"><IMG  src="/static/img/{{ data4 }}" width="80" height="50" ><br>欢迎:{{ i.username }}<br><a href="/app/balance/{{ i.balance }}/{{ username }}/">余额</a>:<br>{{ i.balance }}<br><a href="/app/trolley/{{ username }}/">购物车</a>
+    {% endfor %}</div>
+<a href="/app/index/{{ username }}"><button style="width:56px;text-align:center;">返回</button></a>
+</div>
+</div>
+</body>
+</html>
